@@ -15,9 +15,9 @@ This guide walks you through the process of using Spring to create and submit a 
 == What You Will build
 
 In this guide, you will build a web form, which will be accessible at the following URL:
-`http://localhost:8080/greeting`
+`http://localhost:8080/submission`
 
-Viewing this page in a browser will display the form. You can submit a greeting by
+Viewing this page in a browser will display the form. You can submit a submission by
 populating the `id` and `content` form fields. A results page will be displayed when the form is submitted.
 
 
@@ -69,8 +69,8 @@ In Spring's approach to building web sites, HTTP requests are handled by a contr
 These components are easily identified by the {Controller}[`@Controller`] annotation. The
 `GreetingController` in the following listing (from
 `src/main/java/com/example/handlingformsubmission/GreetingController.java`) handles GET
-requests for `/greeting` by returning the name of a {View}[`View`] (in this case,
-`greeting`). The following `View` is responsible for rendering the HTML content:
+requests for `/submission` by returning the name of a {View}[`View`] (in this case,
+`submission`). The following `View` is responsible for rendering the HTML content:
 
 ====
 [source,java,tabsize=2]
@@ -83,16 +83,16 @@ This controller is concise and simple, but a lot is going on. The rest of this s
 analyzes it step by step.
 
 The mapping annotations let you map HTTP requests to specific controller methods. The two
-methods in this controller are both mapped to `/greeting`. You can use `@RequestMapping`
+methods in this controller are both mapped to `/submission`. You can use `@RequestMapping`
 (which, by default, maps all HTTP operations, such as `GET`, `POST`, and so forth).
 However, in this case, the `greetingForm()` method is specifically mapped to `GET` by
 using `@GetMapping`, while `greetingSubmit()` is mapped to `POST` with `@PostMapping`.
-This mapping lets the controller differentiate the requests to the `/greeting` endpoint.
+This mapping lets the controller differentiate the requests to the `/submission` endpoint.
 
 The `greetingForm()` method uses a {Model}[`Model`] object to expose a new `Greeting` to
 the view template. The `Greeting` object in the following code (from
 `src/main/java/com/example/handlingformsubmission/Greeting.java`) contains fields such as
-`id` and `content` that correspond to the form fields in the `greeting` view and are used
+`id` and `content` that correspond to the form fields in the `submission` view and are used
 to capture the information from the form:
 
 ====
@@ -103,33 +103,33 @@ include::complete/src/main/java/com/example/handlingformsubmission/Greeting.java
 ====
 
 The implementation of the method body relies on a view technology to perform server-side
-rendering of the HTML by converting the view name (`greeting`) into a template to render.
+rendering of the HTML by converting the view name (`submission`) into a template to render.
 In this case, we use https://www.thymeleaf.org/doc/html/Thymeleaf-Spring3.html[Thymeleaf],
-which parses the `greeting.html` template and evaluates the various template expressions
+which parses the `submission.html` template and evaluates the various template expressions
 to render the form. The following listing (from
-`src/main/resources/templates/greeting.html`) shows the `greeting` template:
+`src/main/resources/templates/submission.html`) shows the `submission` template:
 
 ====
 [source,html]
 ----
-include::complete/src/main/resources/templates/greeting.html[]
+include::complete/src/main/resources/templates/submission.html[]
 ----
 ====
 
-The `th:action="@{/greeting}"` expression directs the form to POST to the `/greeting`
-endpoint, while the `th:object="${greeting}"` expression declares the model object to use
+The `th:action="@{/submission}"` expression directs the form to POST to the `/submission`
+endpoint, while the `th:object="${submission}"` expression declares the model object to use
 for collecting the form data. The two form fields, expressed with `th:field="*{id}"` and
 `th:field="*{content}"`, correspond to the fields in the `Greeting` object.
 
 That covers the controller, model, and view for presenting the form. Now we can review the
-process of submitting the form. As noted earlier, the form submits to the `/greeting`
+process of submitting the form. As noted earlier, the form submits to the `/submission`
 endpoint by using a `POST` call. The `greetingSubmit()` method receives the `Greeting`
 object that was populated by the form. The `Greeting` is a `@ModelAttribute`, so it is
 bound to the incoming form content. Also, the submitted data can be rendered in the
 `result` view by referring to it by name (by default, the name of the method parameter, so
-`greeting` in this case). The `id` is rendered in the
-`<p th:text="'id: ' + ${greeting.id}" />` expression. Likewise, the `content` is rendered
-in the `<p th:text="'content: ' + ${greeting.content}" />` expression. The following
+`submission` in this case). The `id` is rendered in the
+`<p th:text="'id: ' + ${submission.id}" />` expression. Likewise, the `content` is rendered
+in the `<p th:text="'content: ' + ${submission.content}" />` expression. The following
 listing (from `src/main/resources/templates/result.html`) shows the result template:
 
 ====
@@ -172,7 +172,7 @@ Logging output is displayed. The service should be up and running within a few s
 
 == Test the service
 
-Now that the web site is running, visit http://localhost:8080/greeting, where you see the
+Now that the web site is running, visit http://localhost:8080/submission, where you see the
 following form:
 
 image::images/form.png[Form]

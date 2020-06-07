@@ -7,17 +7,17 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
-public class GreetingController {
+public class ScravaSubmitController {
 
-	@GetMapping("/greeting")
+	@GetMapping("/")
 	public String greetingForm(Model model) {
-		model.addAttribute("greeting", new Greeting());
-		return "greeting";
+		model.addAttribute("submission", new Submission());
+		return "submit";
 	}
 
-	@PostMapping("/greeting")
-	public String greetingSubmit(@ModelAttribute Greeting greeting, Model model) {
-		model.addAttribute("greeting", greeting);
+	@PostMapping("/")
+	public String scravaSubmit(@ModelAttribute Submission submission, Model model) {
+		model.addAttribute("submission", submission);
 		return "result";
 	}
 
