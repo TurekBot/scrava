@@ -11,13 +11,13 @@ public class ScravaSubmitController {
 
 	@GetMapping("/")
 	public String greetingForm(Model model) {
-		model.addAttribute("submission", new Submission());
+		model.addAttribute("athleteSubmission", new AthleteSubmission());
 		return "submit";
 	}
 
 	@PostMapping("/")
-	public String scravaSubmit(@ModelAttribute Submission submission, Model model) {
-		model.addAttribute("submission", submission);
+	public String scravaSubmit(@ModelAttribute AthleteSubmission athleteSubmission, Model model) {
+		model.addAttribute("athleteSubmission", athleteSubmission);
 		return "result";
 	}
 

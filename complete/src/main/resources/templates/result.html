@@ -1,13 +1,23 @@
 <!DOCTYPE HTML>
-<html xmlns:th="https://www.thymeleaf.org">
+<html xmlns:th="https://www.thymeleaf.org" lang="en">
 <head> 
     <title>Getting Started: Handling Form Submission</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
+<!--{ -->
+<!--"name": "Brad", -->
+<!--"url": "https://www.strava.com/athletes/14910831", -->
+<!--"mileage": "49.3mi", -->
+<!--"elevation": "1,886ft", -->
+<!--"avatar": "https://graph.facebook.com/10209039566897023/picture?height=256&width=256"-->
+<!--}-->
 	<h1>Result</h1>
-    <p th:text="'Name: ' + ${submission.name}" />
-    <p th:text="'JSON: ' + ${submission.json}" />
+    <p th:text="'Name: ' + ${athleteSubmission.name}"></p>
+    <p th:text="'URL: ' + ${athleteSubmission.url}"></p>
+    <p th:text="'Mileage: ' + ${athleteSubmission.mileage}"></p>
+    <p th:text="'Elevation: ' + ${athleteSubmission.elevation}"></p>
+    <p th:text="'Avatar: ' + ${athleteSubmission.avatarUrl}"></p>
     <a href="/">Submit another message</a>
 </body>
 </html>

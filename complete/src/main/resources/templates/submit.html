@@ -1,15 +1,39 @@
 <!DOCTYPE HTML>
-<html xmlns:th="https://www.thymeleaf.org">
-<head> 
+<html xmlns:th="https://www.thymeleaf.org" lang="en">
+<head>
     <title>Getting Started: Handling Form Submission</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 </head>
 <body>
-	<h1>Form</h1>
-    <form action="#" th:action="@{/}" th:object="${submission}" method="post">
-    	<p>Name: <input type="text" th:field="*{name}" /></p>
-        <p>JSON: <input type="text" th:field="*{json}" /></p>
-        <p><input type="submit" value="Submit" /></p>
-    </form>
+<h1>Form</h1>
+<!--        { "name": "Brad",
+"url": "https://www.strava.com/athletes/14910831",
+"mileage": "49.3mi",
+"elevation": "1,886ft",
+"avatar": "https://graph.facebook.com/10209039566897023/picture?height=256&width=256" }-->
+<form action="#" th:action="@{/}" th:object="${athleteSubmission}" method="post">
+    <p><label>
+        Name:
+        <input type="text" th:field="*{name}"/>
+    </label></p>
+    <p><label>
+        URL:
+        <input type="text" th:field="*{url}"/>
+    </label></p>
+    <p><label>
+        Mileage:
+        <input type="text" th:field="*{mileage}"/>
+    </label></p>
+    <p><label>
+        Elevation:
+        <input type="text" th:field="*{elevation}"/>
+    </label></p>
+    <p><label>
+        Avatar URL:
+        <input type="text" th:field="*{avatarUrl}"/>
+    </label></p>
+
+    <p><input type="submit" id="submit" value="Submit"/></p>
+</form>
 </body>
 </html>

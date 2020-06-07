@@ -30,7 +30,7 @@ import org.springframework.test.web.servlet.MockMvc;
 
 @WebMvcTest(ScravaSubmitController.class)
 @TestPropertySource(properties = "logging.level.org.springframework.web=DEBUG")
-public class HandlingFormSubmissionApplicationTest {
+public class HandlingFormAthleteSubmissionApplicationTest {
 
 	@Autowired
 	private MockMvc mockMvc;
