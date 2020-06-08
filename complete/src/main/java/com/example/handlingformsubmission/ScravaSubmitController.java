@@ -11,6 +11,7 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 import java.io.File;
+import java.time.LocalDateTime;
 import java.util.Comparator;
 import java.util.Set;
 import java.util.TreeSet;
@@ -37,7 +38,7 @@ String storagePath = "C:\\Users\\Turek\\Code\\scrava\\storage.xml";
     @PostMapping("/submit")
     public String scravaSubmissionResult(@ModelAttribute AthleteSubmission athleteSubmission, Model model) {
         model.addAttribute("athleteSubmission", athleteSubmission);
-
+        System.out.println(athleteSubmission);
         storage.add(athleteSubmission);
 
         saveAthleteDataToFile();
@@ -91,6 +92,7 @@ String storagePath = "C:\\Users\\Turek\\Code\\scrava\\storage.xml";
             // Wrapping our athlete data.
             AthleteListWrapper wrapper = new AthleteListWrapper();
             wrapper.setAthletes(storage);
+            wrapper.setLastUpdated(LocalDateTime.now());
 
             // Marshalling and saving XML to the file.
             m.marshal(wrapper, new File(storagePath));

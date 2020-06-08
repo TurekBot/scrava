@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html xmlns:th="https://www.thymeleaf.org" lang="en">
 <head>
-    <title>Getting Started: Handling Form Submission</title>
+    <title>Katherine's Bathryns Leaderboard</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <style>
         .avatar {
@@ -37,6 +37,7 @@
 <!--"avatar": "https://graph.facebook.com/10209039566897023/picture?height=256&width=256"-->
 <!--}-->
 <h1 class="display-1">Leaderboard</h1>
+<small>Last updated: <span th:text="${lastUpdated}"></span></small>
 <div class="container">
 
     <div class="row my-4 athlete" th:each="athlete, stats : ${athletes}">

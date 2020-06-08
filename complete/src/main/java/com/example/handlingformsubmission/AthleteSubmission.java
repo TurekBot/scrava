@@ -24,7 +24,7 @@ public class AthleteSubmission {
     }
 
 
-    @XmlElement
+
     public URI getUrl() {
         return url;
     }
@@ -32,12 +32,11 @@ public class AthleteSubmission {
     public void setUrl(String url) {
         this.url = URI.create(url);
     }
-
+    @XmlElement
     public void setUrl(URI url) {
         this.url = url;
     }
 
-    @XmlElement
     public Double getMileage() {
         return mileage;
     }
@@ -49,12 +48,12 @@ public class AthleteSubmission {
                         .substring(0, mileageString.length() - 2)
         );
     }
-
+    @XmlElement
     public void setMileage(Double mileage) {
         this.mileage = mileage;
     }
 
-    @XmlElement
+
     public Double getElevation() {
         return elevation;
     }
@@ -67,12 +66,12 @@ public class AthleteSubmission {
                         .replace(",", "")
         );
     }
-
+    @XmlElement
     public void setElevation(Double elevation) {
         this.elevation = elevation;
     }
 
-    @XmlElement
+
     public URI getAvatarUrl() {
         return avatarUrl;
     }
@@ -80,7 +79,7 @@ public class AthleteSubmission {
     public void setAvatarUrl(String avatarUrl) {
         this.avatarUrl = URI.create(avatarUrl);
     }
-
+    @XmlElement
     public void setAvatarUrl(URI avatarUrl) {
         this.avatarUrl = avatarUrl;
     }
