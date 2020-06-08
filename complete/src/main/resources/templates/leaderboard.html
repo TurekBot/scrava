@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org" lang="en">
+<head>
+    <title>Getting Started: Handling Form Submission</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <style>
+        .avatar {
+            height: 10rem;
+            border-radius: 50%;
+        }
+
+    </style>
+    <!--Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
+</head>
+<body>
+<!--{ -->
+<!--"name": "Brad", -->
+<!--"url": "https://www.strava.com/athletes/14910831", -->
+<!--"mileage": "49.3mi", -->
+<!--"elevation": "1,886ft", -->
+<!--"avatar": "https://graph.facebook.com/10209039566897023/picture?height=256&width=256"-->
+<!--}-->
+<h1 class="display-1">Leaderboard</h1>
+<div class="container">
+
+    <div class="row my-3" th:each="athlete, stats : ${athletes}">
+        <span th:text="${stats.count}" class="display-4 mr-3">1</span>
+        <img class="avatar mx-3" th:src="${athlete.avatarUrl}"
+             src="https://graph.facebook.com/10209039566897023/picture?height=256&width=256" alt="User portrait"/>
+
+        <span class="display-4" th:text="'Name: ' + ${athlete.name}">
+                <a href="${athlete.url}">Brad</a>
+            </span>
+        <span>Miles: <span th:text="${athlete.mileage}">100</span></span>
+        <span>Elevation: <span th:text="${athlete.elevation}">299</span></span>
+
+    </div>
+</div>
+
+</body>
+</html>

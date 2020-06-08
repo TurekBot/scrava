@@ -11,7 +11,7 @@
 "mileage": "49.3mi",
 "elevation": "1,886ft",
 "avatar": "https://graph.facebook.com/10209039566897023/picture?height=256&width=256" }-->
-<form action="#" th:action="@{/}" th:object="${athleteSubmission}" method="post">
+<form action="#" th:action="@{/submit}" th:object="${athleteSubmission}" method="post">
     <p><label>
         Name:
         <input type="text" th:field="*{name}"/>
