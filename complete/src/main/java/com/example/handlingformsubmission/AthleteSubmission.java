@@ -1,9 +1,11 @@
 package com.example.handlingformsubmission;
 
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.net.URI;
 import java.util.Objects;
 
-
+@XmlRootElement(name = "athlete")
 public class AthleteSubmission {
 
     private String name;
@@ -12,7 +14,7 @@ public class AthleteSubmission {
     private Double elevation;
     private URI avatarUrl;
 
-
+    @XmlElement
     public String getName() {
         return name;
     }
@@ -21,20 +23,24 @@ public class AthleteSubmission {
         this.name = name;
     }
 
+
+    @XmlElement
     public URI getUrl() {
         return url;
     }
-
-
 
     public void setUrl(String url) {
         this.url = URI.create(url);
     }
 
+    public void setUrl(URI url) {
+        this.url = url;
+    }
+
+    @XmlElement
     public Double getMileage() {
         return mileage;
     }
-
 
 
     public void setMileage(String mileageString) {
@@ -44,6 +50,11 @@ public class AthleteSubmission {
         );
     }
 
+    public void setMileage(Double mileage) {
+        this.mileage = mileage;
+    }
+
+    @XmlElement
     public Double getElevation() {
         return elevation;
     }
@@ -55,16 +66,23 @@ public class AthleteSubmission {
                         .substring(0, elevationString.length() - 2)
                         .replace(",", "")
         );
-
     }
 
+    public void setElevation(Double elevation) {
+        this.elevation = elevation;
+    }
+
+    @XmlElement
     public URI getAvatarUrl() {
         return avatarUrl;
     }
 
-
     public void setAvatarUrl(String avatarUrl) {
         this.avatarUrl = URI.create(avatarUrl);
+    }
+
+    public void setAvatarUrl(URI avatarUrl) {
+        this.avatarUrl = avatarUrl;
     }
 
     @Override
