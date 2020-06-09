@@ -1,5 +1,6 @@
 package com.example.handlingformsubmission;
 
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,6 +26,9 @@ public class ScravaSubmitController {
     String storagePath = "C:\\Users\\Turek\\Code\\scrava\\storage.xml";
 
     public static final Comparator<AthleteSubmission> HIGHEST_FIRST = Comparator.comparingDouble(AthleteSubmission::getScore).reversed();
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private LocalDateTime lastUpdated;
 
 
     public ScravaSubmitController() {
@@ -60,6 +64,7 @@ public class ScravaSubmitController {
         storage.forEach(System.out::println);
 
         model.addAttribute("athletes", storage);
+        model.addAttribute("lastUpdated", lastUpdated);
 
         System.out.println("Model:");
         model.asMap().forEach((key, value) -> {
@@ -83,6 +88,8 @@ public class ScravaSubmitController {
 
             storage.clear();
             storage.addAll(wrapper.getAthletes());
+
+            lastUpdated = wrapper.getLastUpdated();
 
         } catch (Exception e) { // catches ANY exception
             e.printStackTrace();

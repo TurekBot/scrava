@@ -37,7 +37,7 @@
 <!--"avatar": "https://graph.facebook.com/10209039566897023/picture?height=256&width=256"-->
 <!--}-->
 <h1 class="display-1">Leaderboard</h1>
-<small>Last updated: <span th:text="${lastUpdated}"></span></small>
+<small>Last updated: <span th:text="${{lastUpdated}}"></span></small>
 <div class="container">
 
     <div class="row my-4 athlete" th:each="athlete, stats : ${athletes}">
