@@ -8,11 +8,11 @@
 		<version>2.2.2.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.example</groupId>
-	<artifactId>handling-form-submission</artifactId>
+	<groupId>com.github.turekbot</groupId>
+	<artifactId>scrava</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>handling-form-submission</name>
-	<description>Demo project for Spring Boot</description>
+	<name>scrava</name>
+	<description>A leaderboard containing data scraped from Strava. (The scraping is done by Selenium IDE)</description>
 
 	<properties>
 		<java.version>1.8</java.version>

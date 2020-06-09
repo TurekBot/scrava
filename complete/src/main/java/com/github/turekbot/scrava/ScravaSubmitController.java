@@ -1,4 +1,4 @@
-package com.example.handlingformsubmission;
+package com.github.turekbot.scrava;
 
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;

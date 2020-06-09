@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.handlingformsubmission;
+package com.github.turekbot.scrava;
 
 import static org.hamcrest.Matchers.containsString;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;

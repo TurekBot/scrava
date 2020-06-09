@@ -1,4 +1,4 @@
-package com.example.handlingformsubmission;
+package com.github.turekbot.scrava;
 
 
 import java.time.LocalDateTime;
