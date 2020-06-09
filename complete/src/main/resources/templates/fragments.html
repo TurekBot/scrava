@@ -15,9 +15,11 @@
              src="https://graph.facebook.com/10209039566897023/picture?height=256&width=256" alt="User portrait"/>
 
 
-        <span class="display-4" th:text="${athlete.name}">
-                <a href="${athlete.url}">Brad</a>
+        <a th:href="${athlete.url}">
+            <span class="display-4" th:text="${athlete.name}">
+                Brad
             </span>
+        </a>
 
         <ul class="mt-3">
             <li>

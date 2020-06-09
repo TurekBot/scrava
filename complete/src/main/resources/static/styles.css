@@ -15,8 +15,15 @@
 }
 
 .winners {
-    background-color: #43a047;
+    background-color: #76d275;
     border-radius: 25px 25px 0 0;
+}
+.winners a {
+    color: #00701a;
+}
+
+.winners a:hover:visited {
+    color: #005818;
 }
 
 #winnersLabel {
@@ -26,4 +33,10 @@
 .losers {
     background-color: #cfd8dc;
     border-radius: 0 0 25px 25px;
+}
+.losers a {
+    color: #607d8b;
+}
+.losers a:hover:visited {
+    color: #34515e;
 }
