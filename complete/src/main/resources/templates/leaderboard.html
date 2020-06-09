@@ -4,6 +4,9 @@
     <title>Katherine's Bathryns Leaderboard</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <style>
+
+        /* Why no inspection? Because, it only appears to be unused because it's inside a fragment.*/
+        /*noinspection CssUnusedSymbol*/
         .avatar {
             height: 10rem;
             width: 10rem;
@@ -12,6 +15,18 @@
 
         .athlete ul {
             list-style-type: none;
+        }
+
+        .winners {
+            background-color: aqua;
+        }
+
+        #winnersLabel {
+            writing-mode: tb-rl;
+        }
+
+        .losers {
+            background-color: pink;
         }
 
     </style>
@@ -28,7 +43,7 @@
             integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
             crossorigin="anonymous"></script>
 </head>
-<body>
+<body class="p-5">
 <!--{ -->
 <!--"name": "Brad", -->
 <!--"url": "https://www.strava.com/athletes/14910831", -->
@@ -39,29 +54,10 @@
 <h1 class="display-1">Leaderboard</h1>
 <small>Last updated: <span th:text="${{lastUpdated}}"></span></small>
 <div class="container">
-
-    <div class="row my-4 athlete" th:each="athlete, stats : ${athletes}">
-        <span th:text="${stats.count}" class="display-4 mr-3">1</span>
-        <img class="avatar mx-3" th:src="${athlete.avatarUrl}"
-             src="https://graph.facebook.com/10209039566897023/picture?height=256&width=256" alt="User portrait"/>
-
-        <span class="display-4" th:text="${athlete.name}">
-                <a href="${athlete.url}">Brad</a>
-            </span>
-
-        <ul class="mt-3">
-            <li>
-                <div>Miles: <span th:text="${athlete.mileage}">100</span></div>
-            </li>
-            <li>
-                <div>Elevation: <span th:text="${athlete.elevation}">300</span></div>
-            </li>
-            <li>
-                <div>Score: <span th:text="${athlete.score}">40</span></div>
-            </li>
-        </ul>
-
-
+    <span id="winnersLabel">Winners</span>
+    <div class="p-4 winners" th:include="fragments.html :: athleteRanking (${winners}, 0)" >
+    </div>
+    <div class="p-4 losers" th:include="fragments.html :: athleteRanking (${losers}, 3)" >
     </div>
 </div>
 

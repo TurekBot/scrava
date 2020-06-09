@@ -15,7 +15,8 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-import java.util.stream.Collectors;
+
+import static java.util.stream.Collectors.toList;
 
 @Controller
 public class ScravaSubmitController {
@@ -59,11 +60,21 @@ public class ScravaSubmitController {
         // Sort list
         storage = storage.stream()
                 .sorted(HIGHEST_FIRST)
-                .collect(Collectors.toList());
+                .collect(toList());
 
         storage.forEach(System.out::println);
 
-        model.addAttribute("athletes", storage);
+        List<AthleteSubmission> winners = storage
+                .parallelStream()
+                .limit(3)
+                .collect(toList());
+        List<AthleteSubmission> losers = storage
+                .parallelStream()
+                .filter(athleteSubmission -> !winners.contains(athleteSubmission))
+                .collect(toList());
+
+        model.addAttribute("winners", winners);
+        model.addAttribute("losers", losers);
         model.addAttribute("lastUpdated", lastUpdated);
 
         System.out.println("Model:");
