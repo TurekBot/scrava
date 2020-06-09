@@ -1,6 +1,5 @@
 package com.example.handlingformsubmission;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,17 +11,20 @@ import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 import java.io.File;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 public class ScravaSubmitController {
 
-    Set<AthleteSubmission> storage = new TreeSet<>(Comparator.comparingDouble(AthleteSubmission::getScore).reversed());
+    List<AthleteSubmission> storage = new ArrayList<>();
 
 
-String storagePath = "C:\\Users\\Turek\\Code\\scrava\\storage.xml";
+    String storagePath = "C:\\Users\\Turek\\Code\\scrava\\storage.xml";
+
+    public static final Comparator<AthleteSubmission> HIGHEST_FIRST = Comparator.comparingDouble(AthleteSubmission::getScore).reversed();
 
 
     public ScravaSubmitController() {
@@ -49,19 +51,24 @@ String storagePath = "C:\\Users\\Turek\\Code\\scrava\\storage.xml";
     @GetMapping("/")
     public String leaderBoard(Model model) {
 
-		System.out.println("Storage:");
-		storage.forEach(System.out::println);
+        System.out.println("Storage:");
+        // Sort list
+        storage = storage.stream()
+                .sorted(HIGHEST_FIRST)
+                .collect(Collectors.toList());
 
-		model.addAttribute("athletes", storage);
+        storage.forEach(System.out::println);
 
-		System.out.println("Model:");
-		model.asMap().forEach((key, value) -> {
-			System.out.println("Key: " + key);
-			System.out.println("Value: " + value);
-		});
-		System.out.println();
+        model.addAttribute("athletes", storage);
 
-		return "leaderboard";
+        System.out.println("Model:");
+        model.asMap().forEach((key, value) -> {
+            System.out.println("Key: " + key);
+            System.out.println("Value: " + value);
+        });
+        System.out.println();
+
+        return "leaderboard";
     }
 
 

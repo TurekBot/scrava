@@ -2,7 +2,7 @@ package com.example.handlingformsubmission;
 
 
 import java.time.LocalDateTime;
-import java.util.Set;
+import java.util.List;
 
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
@@ -19,16 +19,16 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 @XmlRootElement(name = "athletes")
 public class AthleteListWrapper {
 
-    private Set<AthleteSubmission> athletes;
+    private List<AthleteSubmission> athletes;
 
     private LocalDateTime lastUpdated;
 
     @XmlElement(name = "athlete")
-    public Set<AthleteSubmission> getAthletes() {
+    public List<AthleteSubmission> getAthletes() {
         return athletes;
     }
 
-    public void setAthletes(Set<AthleteSubmission> athletes) {
+    public void setAthletes(List<AthleteSubmission> athletes) {
         this.athletes = athletes;
     }
 
@@ -42,12 +42,12 @@ public class AthleteListWrapper {
         this.lastUpdated = lastUpdated;
     }
 
-    public class LocalDateTimeAdapter extends XmlAdapter<String, LocalDateTime> {
-        public LocalDateTime unmarshal(String v) throws Exception {
+    public static class LocalDateTimeAdapter extends XmlAdapter<String, LocalDateTime> {
+        public LocalDateTime unmarshal(String v) {
             return LocalDateTime.parse(v);
         }
 
-        public String marshal(LocalDateTime v) throws Exception {
+        public String marshal(LocalDateTime v) {
             return v.toString();
         }
     }

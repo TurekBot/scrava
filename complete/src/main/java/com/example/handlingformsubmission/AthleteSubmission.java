@@ -24,7 +24,6 @@ public class AthleteSubmission {
     }
 
 
-
     public URI getUrl() {
         return url;
     }
@@ -41,13 +40,6 @@ public class AthleteSubmission {
         return mileage;
     }
 
-
-    public void setMileage(String mileageString) {
-        this.mileage = Double.parseDouble(
-                mileageString
-                        .substring(0, mileageString.length() - 2)
-        );
-    }
     @XmlElement
     public void setMileage(Double mileage) {
         this.mileage = mileage;
@@ -58,14 +50,6 @@ public class AthleteSubmission {
         return elevation;
     }
 
-
-    public void setElevation(String elevationString) {
-        this.elevation = Double.parseDouble(
-                elevationString
-                        .substring(0, elevationString.length() - 2)
-                        .replace(",", "")
-        );
-    }
     @XmlElement
     public void setElevation(Double elevation) {
         this.elevation = elevation;
