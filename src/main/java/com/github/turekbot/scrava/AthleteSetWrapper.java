@@ -2,7 +2,7 @@ package com.github.turekbot.scrava;
 
 
 import java.time.LocalDateTime;
-import java.util.List;
+import java.util.Set;
 
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
@@ -17,18 +17,18 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * @author Marco Jakob
  */
 @XmlRootElement(name = "athletes")
-public class AthleteListWrapper {
+public class AthleteSetWrapper {
 
-    private List<AthleteSubmission> athletes;
+    private Set<AthleteSubmission> athletes;
 
     private LocalDateTime lastUpdated;
 
     @XmlElement(name = "athlete")
-    public List<AthleteSubmission> getAthletes() {
+    public Set<AthleteSubmission> getAthletes() {
         return athletes;
     }
 
-    public void setAthletes(List<AthleteSubmission> athletes) {
+    public void setAthletes(Set<AthleteSubmission> athletes) {
         this.athletes = athletes;
     }
 

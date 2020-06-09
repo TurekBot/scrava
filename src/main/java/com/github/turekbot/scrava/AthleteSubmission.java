@@ -2,10 +2,12 @@ package com.github.turekbot.scrava;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
 import java.net.URI;
 import java.util.Objects;
 
 @XmlRootElement(name = "athlete")
+@XmlType(propOrder = {"name", "url", "mileage", "elevation", "avatarUrl"})
 public class AthleteSubmission {
 
     private String name;

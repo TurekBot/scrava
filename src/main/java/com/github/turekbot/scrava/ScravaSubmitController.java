@@ -12,16 +12,14 @@ import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 import java.io.File;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 
 import static java.util.stream.Collectors.toList;
 
 @Controller
 public class ScravaSubmitController {
 
-    List<AthleteSubmission> storage = new ArrayList<>();
+    Set<AthleteSubmission> storage = new HashSet<>();
 
 
     String storagePath = "C:\\Users\\Turek\\Code\\scrava\\storage.xml";
@@ -58,17 +56,17 @@ public class ScravaSubmitController {
 
         System.out.println("Storage:");
         // Sort list
-        storage = storage.stream()
+        List<AthleteSubmission> sortedList = storage.stream()
                 .sorted(HIGHEST_FIRST)
                 .collect(toList());
 
-        storage.forEach(System.out::println);
+        sortedList.forEach(System.out::println);
 
-        List<AthleteSubmission> winners = storage
+        List<AthleteSubmission> winners = sortedList
                 .parallelStream()
                 .limit(3)
                 .collect(toList());
-        List<AthleteSubmission> losers = storage
+        List<AthleteSubmission> losers = sortedList
                 .parallelStream()
                 .filter(athleteSubmission -> !winners.contains(athleteSubmission))
                 .collect(toList());
@@ -91,11 +89,11 @@ public class ScravaSubmitController {
     public void loadAthleteDataFromFile() {
         try {
             JAXBContext context = JAXBContext
-                    .newInstance(AthleteListWrapper.class);
+                    .newInstance(AthleteSetWrapper.class);
             Unmarshaller um = context.createUnmarshaller();
 
             // Reading XML from the file and unmarshalling.
-            AthleteListWrapper wrapper = (AthleteListWrapper) um.unmarshal(new File(storagePath));
+            AthleteSetWrapper wrapper = (AthleteSetWrapper) um.unmarshal(new File(storagePath));
 
             storage.clear();
             storage.addAll(wrapper.getAthletes());
@@ -110,12 +108,12 @@ public class ScravaSubmitController {
     public void saveAthleteDataToFile() {
         try {
             JAXBContext context = JAXBContext
-                    .newInstance(AthleteListWrapper.class);
+                    .newInstance(AthleteSetWrapper.class);
             Marshaller m = context.createMarshaller();
             m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
 
             // Wrapping our athlete data.
-            AthleteListWrapper wrapper = new AthleteListWrapper();
+            AthleteSetWrapper wrapper = new AthleteSetWrapper();
             wrapper.setAthletes(storage);
             wrapper.setLastUpdated(LocalDateTime.now());
 
