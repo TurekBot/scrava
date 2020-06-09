@@ -3,33 +3,7 @@
 <head>
     <title>Katherine's Bathryns Leaderboard</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <style>
-
-        /* Why no inspection? Because, it only appears to be unused because it's inside a fragment.*/
-        /*noinspection CssUnusedSymbol*/
-        .avatar {
-            height: 10rem;
-            width: 10rem;
-            border-radius: 50%;
-        }
-
-        .athlete ul {
-            list-style-type: none;
-        }
-
-        .winners {
-            background-color: aqua;
-        }
-
-        #winnersLabel {
-            writing-mode: tb-rl;
-        }
-
-        .losers {
-            background-color: pink;
-        }
-
-    </style>
+    <link href="styles.css" rel="stylesheet"/>
     <!--Bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -44,20 +18,19 @@
             crossorigin="anonymous"></script>
 </head>
 <body class="p-5">
-<!--{ -->
-<!--"name": "Brad", -->
-<!--"url": "https://www.strava.com/athletes/14910831", -->
-<!--"mileage": "49.3mi", -->
-<!--"elevation": "1,886ft", -->
-<!--"avatar": "https://graph.facebook.com/10209039566897023/picture?height=256&width=256"-->
-<!--}-->
-<h1 class="display-1">Leaderboard</h1>
-<small>Last updated: <span th:text="${{lastUpdated}}"></span></small>
 <div class="container">
-    <span id="winnersLabel">Winners</span>
-    <div class="p-4 winners" th:include="fragments.html :: athleteRanking (${winners}, 0)" >
+    <small class="ml-2">Last updated: <span th:text="${{lastUpdated}}"></span></small>
+    <h1 class="display-1">Leaderboard</h1>
+
+
+    <div class="px-5 py-3 winners">
+        <h4 id="winnersLabel">Those who get to pick their legs:</h4>
+        <div th:replace="fragments.html :: athleteRanking (${winners}, 0)">
+        </div>
     </div>
-    <div class="p-4 losers" th:include="fragments.html :: athleteRanking (${losers}, 3)" >
+    <div class="px-5 py-3 losers">
+        <h4 id="losersLabel">Those who do not:</h4>
+        <div th:replace="fragments.html :: athleteRanking (${losers}, 3)"></div>
     </div>
 </div>
 

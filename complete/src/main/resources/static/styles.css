@@ -1,3 +1,26 @@
+
+/* Why no inspection? Because, it only appears to be unused because it's inside a fragment.*/
+/*noinspection CssUnusedSymbol*/
 .avatar {
-    height: 20rem;
+    height: 10rem;
+    width: 10rem;
+    border-radius: 50%;
+}
+
+.athlete ul {
+    list-style-type: none;
+}
+
+.winners {
+    background-color: #43a047;
+    border-radius: 25px 25px 0 0;
+}
+
+#winnersLabel {
+
+}
+
+.losers {
+    background-color: #a7c0cd;
+    border-radius: 0 0 25px 25px;
 }
